@@ -1,10 +1,19 @@
 <h1>ユーザー情報詳細</h1>
-<h3><%= @user.name %></h3>
+
+
+<h3>ユーザー名：<%= @user.name %></h3>
+<p><%= image_tag @user.get_profile_image(100,100) %></p>
+<% if @user == current_user %>
+  <%= link_to "編集", edit_user_path(@user) %>
+<% end %>
+
+<h3><%= @user.name %>の投稿一覧</h3>
 
 <% @post_images.each do |post_image| %>
   <%= link_to post_image_path(post_image.id) do %>
-    <%= image_tag post_image.get_image %>
+    <%= image_tag post_image.get_image(150,150) %>
   <% end %>
   <p>タイトル：<%= post_image.name %></p>
-  <p>説明：<%= post_image.caption </p>
+  <p>説明：<%= post_image.caption %></p>
 <% end %>
+

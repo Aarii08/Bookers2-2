@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
   resources :post_images
-  resources :user, only: [:show, :edit]
+  resources :user, only: [:show, :edit, :update]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
