@@ -1,0 +1,10 @@
+<h1>ユーザー情報詳細</h1>
+<h3><%= @user.name %></h3>
+
+<% @post_images.each do |post_image| %>
+  <%= link_to post_image_path(post_image.id) do %>
+    <%= image_tag post_image.get_image %>
+  <% end %>
+  <p>タイトル：<%= post_image.name %></p>
+  <p>説明：<%= post_image.caption </p>
+<% end %>

@@ -1,0 +1,10 @@
+<h1>新規投稿</h1>
+<%= form_with model: @post_image do |f| %>
+  <h3>画像</h3>
+  <%= f.file_field :image, accept: "image/*" %>
+  <h3>タイトル</h3>
+  <%= f.text_field :name %>
+  <h3>説明</h3>
+  <%= f.text_area :caption %>
+  <%= f.submit "投稿" %>
+<% end %>
