@@ -1,4 +1,7 @@
 <h1>新規投稿</h1>
+
+<%= render "devise/shared/error_messages", resource: @post_image %>
+
 <%= form_with model: @post_image do |f| %>
   <h3>画像</h3>
   <%= f.file_field :image, accept: "image/*" %>

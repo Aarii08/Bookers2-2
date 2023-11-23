@@ -2,7 +2,7 @@ class UserController < ApplicationController
   
   def show
     @user = current_user
-    @post_images = @user.post_images
+    @post_images = @user.post_images.page(params[:page])
   end
 
   def edit
