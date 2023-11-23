@@ -15,7 +15,7 @@ class PostImagesController < ApplicationController
   end
 
   def index
-    @post_images = PostImage.page(params[:page])
+    @post_images = PostImage.order(created_at: :desc).page(params[:page])
   end
 
   def show
@@ -37,5 +37,5 @@ class PostImagesController < ApplicationController
   def post_image_params
     params.require(:post_image).permit(:name, :image, :caption)
   end
-  
+
 end

@@ -1,8 +1,31 @@
-<h1>マイプロフィール編集</h1>
-<%= form_with model: @user do |f| %>
-  <%= f.label :name, "ユーザーネーム" %>
-  <%= f.text_field :name, autofocus: true %>
-  <%= f.label :profile_image, "画像" %>
-  <%= f.file_field :profile_image, accept: "image/*" %>
-  <%= f.submit "変更を保存" %>
-<% end %>
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0 text-center">プロフィール編集</h5>
+      <div class="form-body p-4">
+        <% if @user.errors.any? %>
+          <ul class="alert alert-danger" role="alert">
+            <h6 class="alert-heading">
+              <%= @user.errors.count %>件のエラーが発生しました
+            </h6>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <%= form_with model: @user do |f| %>
+          <div class="input-group mb-3 mt-3">
+            <p class="mx-auto mb-4">
+            <%= f.label :name, "ユーザーネーム" %>
+            <%= f.text_field :name, autofocus: true, class:"form-control" %>
+            </p>
+            <div class="mx-auto mt-4">
+              <%= f.file_field :profile_image, accept: "image/*" %>
+            </div>
+          </div>
+          <%= f.submit '変更を保存', class:"btn btn-lg btn-block btn-info mt-5" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
