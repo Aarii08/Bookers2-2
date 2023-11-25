@@ -8,30 +8,21 @@
         </div>
         <div class="col-10">
           <p class="card-title">
-            <strong><i class="far fa-flag"></i><span> <%= @post_image.name %></span></strong>
+            <strong><i class="fa-solid fa-user"></i><span> <%= @post_image.name %></span></strong>
           </p>
           <p class="card-text"><%= @post_image.caption %></p>
-          <p class="card-text">投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
-          <p class="card-text">コメント件数：<%= @post_image.post_comments.count %></p>
-          <p class="card-text">
-            <% if @post_image.favorited_by?(current_user) %>
-              <span class="text-danger">♥</span> <%= @post_image.favorites.count %>
-              <%= link_to post_image_favorite_path(@post_image), method: :delete, class: "btn btn-outline-danger" do %>
-                 いいね解除
-              <% end %>
-            <% else %>
-              ♡<%= @post_image.favorites.count %>
-              <%= link_to post_image_favorite_path(@post_image), method: :post, class: "btn btn-outline-success" do %>
-                いいねする
-              <% end %>
-            <% end %>
+          <p class="card-text"><%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
+          <p class="card-text mt-5">コメント件数：<%= @post_image.post_comments.count %></p>
+          <p class="card-text" id="favorites_btn_<%= @post_image.id %>">
+            <%= render "favorites/favorites", post_image: @post_image %>
           </p>
         </div>
-        <div class="ml-auto">
-          <% if @post_image.user == current_user %>
+        <% if @post_image.user == current_user %>
+          <%= link_to "編集", edit_post_image_path(@post_image), class: "btn btn-success" %>
+          <div class="ml-auto">
             <%= link_to "削除", post_image_path(@post_image), method: :delete, class: "btn btn-danger" %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -45,15 +36,16 @@
         </div>
         <div class="col-10">
           <p class="card-title">
-            <strong><i class="far fa-flag"></i><span> <%= post_comment.user.name %></span></strong>
+            <strong><i class="fa-solid fa-user"></i><span> <%= post_comment.user.name %></span></strong>
           </p>
           <p class="card-text"><%= post_comment.comment %></p>
-          <p class="card-text">投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
+          <p class="card-text"><%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
         </div>
-        <div class="ml-auto">
-          <% if @post_image.user == current_user %>
-            <%= link_to " 削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete, class: "btn btn-danger" %>
-          <% end %>
+        <% if @post_image.user == current_user %>
+          <div class="ml-auto">
+            <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete, class: "btn btn-danger" %>
+          </div>
+        <% end %>
         </div>
       </div>
     </div>

@@ -13,8 +13,9 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 
+require("./preview")
 
 
 Rails.start()
-Turbolinks.start()
+// Turbolinks.start()
 ActiveStorage.start()

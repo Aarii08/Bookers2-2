@@ -1,0 +1,11 @@
+<% if post_image.favorited_by?(current_user) %>
+  <span class="text-danger">♥</span> <%= post_image.favorites.count %>
+  <%= link_to post_image_favorite_path(post_image), method: :delete, remote: true, class: "btn btn-outline-danger", data: {"turbolinks" => false} do %>
+    いいね解除
+  <% end %>
+<% else %>
+  ♡<%= post_image.favorites.count %>
+  <%= link_to post_image_favorite_path(post_image), method: :post, remote: true, class: "btn btn-outline-success", data: {"turbolinks" => false} do %>
+    いいねする
+  <% end %>
+<% end %>

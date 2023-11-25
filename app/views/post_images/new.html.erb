@@ -13,10 +13,11 @@
             <% end %>
           </ul>
         <% end %>
-        <%= form_with model: @post_image do |f| %>
+        <%= form_with model: @post_image, id: "post" do |f| %>
           <div class="image">
-            <%= f.file_field :image accept: "image/*", class: "w-100" %>
+            <%= f.file_field :image, accept: "image/*", class: "w-100" %>
           </div>
+          <div id="image" class="p-3 mx-auto"></div>
           <div class="input-group mb-3 mt-4">
             <%= f.text_field :name, class:"form-control", placeholder:"タイトル" %>
           </div>
