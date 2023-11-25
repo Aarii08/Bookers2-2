@@ -14,11 +14,10 @@
           </ul>
         <% end %>
         <%= form_with model: @post_image do |f| %>
-          <%= f.file_field :image, accept: "image/*", class: "w-100" %>
+          <div class="image">
+            <%= f.file_field :image accept: "image/*", class: "w-100" %>
+          </div>
           <div class="input-group mb-3 mt-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
-            </div>
             <%= f.text_field :name, class:"form-control", placeholder:"タイトル" %>
           </div>
           <%= f.text_area :caption, class:"form-control", rows:"3", placeholder:"コメントここに" %>
