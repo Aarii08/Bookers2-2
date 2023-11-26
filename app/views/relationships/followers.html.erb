@@ -1,0 +1,19 @@
+<div class="card-list-container py-5">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <h1 class="text-center mb-5 border-bottom border-dark"><%= @user.name %>さんのフォロワー一覧</h1>
+      <% if @users.exists? %>
+        <% @users.each do |user| %>
+          <p class="text-center">
+          <%= link_to user_path(user) do %>
+            <%= image_tag user.get_profile_image(50,50) %>
+            <%= user.name %>
+          <% end %>
+          </p>
+        <% end %>
+      <% else %>
+        <p class="text-center">ユーザーはいません</p>
+      <% end %>
+    </div>
+  </div>
+</div>
