@@ -1,0 +1,33 @@
+<div class="card-list-container py-5">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <h1 class="text-center mb-5 border-bottom border-dark">ユーザー一覧</h1>
+      <div class="col-12 text-center">
+        <% @users.each do |user| %>
+          <div class="row mt-5 py-3 border">
+            <div class="col-6">
+              <h3 class="text-center mt-3 mb-2"><%= user.name %></h3>
+              <%= link_to user_path(user) do %>
+                <p class="text-center mt-2"><%= image_tag user.get_profile_image(100,100) %></p>
+              <% end %>
+              <% if user == current_user %>
+                <p class="text-center"><%= link_to "編集", edit_user_path(user), class: "btn btn-success" %></p>
+              <% end %>
+            </div>
+            <div class="col-6">
+              <div id="follow-btn_<%= user.id %>">
+                <%= render "relationships/follow", user: user %>
+              </div>
+              <div class="text-left" id="followings-count_<%= user.id %>">
+                <p>フォロー：<%= link_to user.followings.count, user_followings_path(user) %></p>
+              </div>
+              <div class="text-left" id="followers-count_<%= user.id %>">
+                <p>フォロワー：<%= link_to user.followers.count, user_followers_path(user) %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
