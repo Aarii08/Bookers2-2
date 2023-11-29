@@ -1,0 +1,57 @@
+<div class="card-list-container py-5">
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <% @entries.each do |e| %>
+      <% if @my_user_id != e.user.id %>
+        <h3 class="text-center my-3 bg-dark text-white p-4"><%= e.user.name %>さんとのメッセージ</h3>
+      <% end %>
+    <% end %>
+    <% if @messages.present? %>
+      <% @messages.each do |m| %>
+        <div class="card-body">
+          <% if @my_user_id == m.user.id %>
+            <div class="bg-info text-white py-2">
+              <div class="row">
+                <div class="col-2">
+                  <%= image_tag m.user.get_profile_image(80,80), class:"mt-3 rounded-circle"; %>
+                </div>
+                <div class="col-10">
+                  <p class="card-title ">
+                    <strong><i class="fa-regular fa-flag"></i><span> <%= m.user.name %></span></strong>
+                  </p>
+                  <p class="card-text"><%= m.message %></p>
+                </div>
+              </div>
+            </div>
+          <% else %>
+            <div class="text-right">
+              <div class="row">
+                <div class="col-10">
+                  <p class="card-title ">
+                    <strong><i class="fa-regular fa-flag"></i><span> <%= m.user.name %></span></strong>
+                  </p>
+                  <p class="card-text"><%= m.message %></p>
+                </div>
+                <div class="col-2">
+                  <%= image_tag m.user.get_profile_image(80,80), class:"mt-3 rounded-circle ml-auto" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row no-gutters mb-5">
+  <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+    <h5 class="bg-dark text-white p-4 mb-0 text-center">メッセージ</h5>
+    <div class="form-body p-3">
+      <%= form_with model: @message do |f| %>
+        <%= f.text_field :message, placeholder: "メッセージを入力してください", size: 50, class: "form-control" %>
+        <%= f.hidden_field :room_id, value: @room.id %>
+        <%= f.submit "書き込む", class: "btn btn-lg btn-block btn-success mt-3" %>
+      <% end %>
+    </div>
+  </div>
+</div>
