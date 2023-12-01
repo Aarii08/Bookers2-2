@@ -7,6 +7,7 @@ class UserController < ApplicationController
 
   def index
     @users = User.all
+    @my_user = User.find_by(id: current_user)
   end
 
   def show
