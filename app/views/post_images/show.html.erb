@@ -18,6 +18,7 @@
           <p class="card-text" id="favorites_btn_<%= @post_image.id %>">
             <%= render "favorites/favorites", post_image: @post_image %>
           </p>
+          <p class="text-right">閲覧数：<%= @post_image.read_counts.count %></p>
         </div>
         <% if @post_image.user == current_user %>
           <%= link_to "編集", edit_post_image_path(@post_image), class: "btn btn-success" %>

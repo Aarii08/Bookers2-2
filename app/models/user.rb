@@ -20,6 +20,7 @@ class User < ApplicationRecord
 
   has_many :entries, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :read_counts, dependent: :destroy
 
   # 指定したユーザーをフォロー
   def follow(user)

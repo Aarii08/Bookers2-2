@@ -21,12 +21,15 @@ class PostImagesController < ApplicationController
   def show
     @post_image = PostImage.find(params[:id])
     @post_comment = PostComment.new
+    unless ReadCount.find_by(user_id: current_user.id, post_image_id: @post_image.id)
+      current_user.read_counts.create(post_image_id: @post_image.id)
+    end
   end
 
   def edit
     @post_image = PostImage.find(params[:id])
   end
-  
+
   def update
     post_image = PostImage.find(params[:id])
     post_image.update(post_image_params)
